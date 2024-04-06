@@ -49,6 +49,7 @@ const CuteGif = () => {
           </Typography>
           <img src="/images/bfgf.gif" alt="Cute GIF" style={{ width: '300px', height: '300px', marginBottom: '20px', borderRadius:"150px" }} />
           <Button onClick={handleYesClick} variant="contained" color="primary">YES</Button>
+          <Typography sx={{color:"wheat", fontSize:"30px", fontWeight:"800"}}>Can't say NO</Typography>
         </>
       )}
       {showNameForm && (
