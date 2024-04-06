@@ -26,7 +26,7 @@ const CuteGif = () => {
   const handleDatePlanSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/dateplans", {
+      const response = await axios.post("https://ask-her-out-4.onrender.com/dateplans", {
         userName,
         date,
         location,
