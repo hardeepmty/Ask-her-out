@@ -52,7 +52,8 @@ const CuteGif = () => {
         </>
       )}
       {showNameForm && (
-        <form onSubmit={handleNameSubmit}>
+        <form onSubmit={handleNameSubmit} style={{marginTop:"200px"}}>
+          <Typography>Whats ur name?</Typography>
           <TextField
             label="Your Name"
             value={userName}
