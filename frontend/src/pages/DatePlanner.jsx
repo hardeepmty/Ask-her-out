@@ -11,7 +11,6 @@ const DatePlanner = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Here you can handle the submission, for example, sending the data to a backend server
     console.log('Date:', date);
     console.log('Location:', location);
     console.log('Message:', message);

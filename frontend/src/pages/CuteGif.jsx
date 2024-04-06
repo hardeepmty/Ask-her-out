@@ -11,7 +11,6 @@ const CuteGif = () => {
   const [location, setLocation] = useState('');
   const [message, setMessage] = useState('');
   
-  // Define navigate constant using useNavigate hook
   const navigate = useNavigate();
 
   const handleYesClick = () => {
