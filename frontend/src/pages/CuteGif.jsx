@@ -41,13 +41,13 @@ const CuteGif = () => {
   };
 
   return (
-    <Container maxWidth="sm" style={{ marginTop: '50px' }}>
+    <Container maxWidth="sm" style={{ backgroundImage: `url(/images/night.png)`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
       {!showNameForm && !showDatePlanForm && (
         <>
-          <Typography variant="h4" gutterBottom>
-            Plan a Date
+          <Typography  sx={{color:"white", fontSize:"30px", fontWeight:"800"}} gutterBottom>
+            Let's Plan a Date
           </Typography>
-          <img src="/images/bfgf.gif" alt="Cute GIF" style={{ width: '300px', height: '300px', marginBottom: '20px' }} />
+          <img src="/images/bfgf.gif" alt="Cute GIF" style={{ width: '300px', height: '300px', marginBottom: '20px', borderRadius:"150px" }} />
           <Button onClick={handleYesClick} variant="contained" color="primary">YES</Button>
         </>
       )}
