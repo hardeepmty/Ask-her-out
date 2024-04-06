@@ -66,6 +66,7 @@ const CuteGif = () => {
       )}
       {showDatePlanForm && (
         <form onSubmit={handleDatePlanSubmit}>
+          <Typography variant='h4'>Lets plan our date</Typography>
           <TextField
             label="Choose a date"
             type="date"
