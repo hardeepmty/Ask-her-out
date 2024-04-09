@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, TextField, Button, Typography } from '@mui/material';
 import axios from "axios";
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const CuteGif = () => {
   const [showNameForm, setShowNameForm] = useState(false);
@@ -10,7 +10,7 @@ const CuteGif = () => {
   const [date, setDate] = useState('');
   const [location, setLocation] = useState('');
   const [message, setMessage] = useState('');
-  
+  const [senderEmail, setSenderEmail] = useState(''); // New state for sender's email
   const navigate = useNavigate();
 
   const handleYesClick = () => {
@@ -30,7 +30,8 @@ const CuteGif = () => {
         userName,
         date,
         location,
-        message
+        message,
+        senderEmail // Include sender's email in the request body
       });
       console.log(response.data);
       alert("Your date is registered!");
@@ -44,17 +45,17 @@ const CuteGif = () => {
     <Container maxWidth="sm" style={{ backgroundImage: `url(/images/night.png)`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
       {!showNameForm && !showDatePlanForm && (
         <>
-          <Typography  sx={{color:"white", fontSize:"30px", fontWeight:"800"}} gutterBottom>
+          <Typography sx={{ color: "white", fontSize: "30px", fontWeight: "800" }} gutterBottom>
             Let's Plan a Date
           </Typography>
-          <img src="/images/bfgf.gif" alt="Cute GIF" style={{ width: '300px', height: '300px', marginBottom: '20px', borderRadius:"150px" }} />
+          <img src="/images/bfgf.gif" alt="Cute GIF" style={{ width: '300px', height: '300px', marginBottom: '20px', borderRadius: "150px" }} />
           <Button onClick={handleYesClick} variant="contained" color="primary">YES</Button>
-          <Typography sx={{color:"wheat", fontSize:"30px", fontWeight:"800"}}>Can't say NO</Typography>
+          <Typography sx={{ color: "wheat", fontSize: "30px", fontWeight: "800" }}>Can't say NO</Typography>
         </>
       )}
       {showNameForm && (
-        <form onSubmit={handleNameSubmit} style={{marginTop:"200px"}}>
-          <Typography>Whats ur name?</Typography>
+        <form onSubmit={handleNameSubmit} style={{ marginTop: "200px" }}>
+          <Typography>What's ur name?</Typography>
           <TextField
             label="Your Name"
             value={userName}
@@ -67,7 +68,7 @@ const CuteGif = () => {
       )}
       {showDatePlanForm && (
         <form onSubmit={handleDatePlanSubmit}>
-          <Typography variant='h4'>Lets plan our date</Typography>
+          <Typography variant='h4'>Let's plan our date</Typography>
           <TextField
             label="Choose a date"
             type="date"
