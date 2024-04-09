@@ -27,8 +27,8 @@ const transporter = nodemailer.createTransport({
   port: 587,
   secure: false, // true for 465, false for other ports
   auth: {
-    user: 'gugul8337@gmail.com', // Enter your Gmail email address
-    pass: 'Gugul1991' // Enter your Gmail password
+    user: 'rajdeveloper4444@gmail.com', // Enter your Gmail email address
+    pass: 'jrme xpxi xykp vwlh' // Enter your Gmail password
   }
 });
 
@@ -41,7 +41,7 @@ app.post('/dateplans', async (req, res) => {
 
     // Send email to the receiver
     const mailOptions = {
-      from: 'gugul8337@gmail.com', // Your email address
+      from: 'rajdeveloper4444@gmail.com', // Your email address
       to: 'mohanty4raj@gmail.com', // Receiver's email address
       subject: 'Date Plan Confirmation',
       text: `Your date plan has been saved successfully.\n\nDetails:\nDate: ${date}\nLocation: ${location}\nMessage: ${message}`

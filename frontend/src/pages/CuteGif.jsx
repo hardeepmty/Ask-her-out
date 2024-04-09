@@ -10,7 +10,7 @@ const CuteGif = () => {
   const [date, setDate] = useState('');
   const [location, setLocation] = useState('');
   const [message, setMessage] = useState('');
-  const [senderEmail, setSenderEmail] = useState(''); // New state for sender's email
+  const [senderEmail, setSenderEmail] = useState('');
   const navigate = useNavigate();
 
   const handleYesClick = () => {
@@ -26,18 +26,34 @@ const CuteGif = () => {
   const handleDatePlanSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("https://ask-her-out-4.onrender.com/dateplans", {
+      const response = await axios.post("http://localhost:5000/dateplans", {
         userName,
         date,
         location,
         message,
-        senderEmail // Include sender's email in the request body
       });
       console.log(response.data);
+      // Send emails when the date plan is successfully submitted
+      sendEmails();
       alert("Your date is registered!");
       navigate('/seeu');
     } catch (error) {
       console.log("Error submitting the date plan", error);
+    }
+  };
+
+  // Function to send emails
+  const sendEmails = async () => {
+    try {
+      await axios.post("http://localhost:5000/sendemails", {
+        userName,
+        date,
+        location,
+        message,
+      });
+      console.log("Emails sent successfully");
+    } catch (error) {
+      console.log("Error sending emails", error);
     }
   };
 
