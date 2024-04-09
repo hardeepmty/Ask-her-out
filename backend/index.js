@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -10,7 +11,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb+srv://mohanty4raj:lpuZjUPEGmGlBPFy@cluster0.fiaafld.mongodb.net/Dateapp?retryWrites=true&w=majority&appName=Cluster0', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('Failed to connect to MongoDB', err));
 
@@ -21,31 +22,29 @@ const DatePlan = mongoose.model('DatePlan', {
   message: String
 });
 
-// Create a nodemailer transporter using SMTP
 const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false, // true for 465, false for other ports
+  host: process.env.SMTP_SERVER,
+  port: process.env.SMTP_PORT,
+  secure: false,
   auth: {
-    user: 'rajdeveloper4444@gmail.com', // Enter your Gmail email address
-    pass: 'jrme xpxi xykp vwlh' // Enter your Gmail password
+    user: process.env.SMTP_USERNAME,
+    pass: process.env.SMTP_PASSWORD
   }
 });
 
-// Define the route to handle sending date plans
 app.post('/dateplans', async (req, res) => {
   try {
     const { userName, date, location, message } = req.body;
     const datePlan = new DatePlan({ userName, date, location, message });
     await datePlan.save();
 
-    // Send email to the receiver
     const mailOptions = {
-      from: 'rajdeveloper4444@gmail.com', // Your email address
-      to: 'mohanty4raj@gmail.com', // Receiver's email address
+      from: process.env.EMAIL_FROM,
+      to: process.env.EMAIL_TO,
       subject: 'Date Plan Confirmation',
       text: `Your date plan has been saved successfully.\n\nDetails:\nDate: ${date}\nLocation: ${location}\nMessage: ${message}`
     };
+
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         console.error('Error sending email:', error);
