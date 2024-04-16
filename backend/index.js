@@ -34,13 +34,13 @@ const transporter = nodemailer.createTransport({
 
 app.post('/dateplans', async (req, res) => {
   try {
-    const { userName, date, location, message } = req.body;
+    const { userName, date, location, message, receiverEmail } = req.body;
     const datePlan = new DatePlan({ userName, date, location, message });
     await datePlan.save();
 
     const mailOptions = {
       from: process.env.EMAIL_FROM,
-      to: process.env.EMAIL_TO,
+      to: receiverEmail,
       subject: 'Date Plan Confirmation',
       text: `Your date plan has been saved successfully.\n\nDetails:\nDate: ${date}\nLocation: ${location}\nMessage: ${message}`
     };

@@ -10,7 +10,7 @@ const CuteGif = () => {
   const [date, setDate] = useState('');
   const [location, setLocation] = useState('');
   const [message, setMessage] = useState('');
-  const [senderEmail, setSenderEmail] = useState('');
+  const [receiverEmail, setReceiverEmail] = useState(''); // New state for receiver's email
   const navigate = useNavigate();
 
   const handleYesClick = () => {
@@ -31,6 +31,7 @@ const CuteGif = () => {
         date,
         location,
         message,
+        receiverEmail, // Include receiver's email in the request
       });
       console.log(response.data);
       // Send emails when the date plan is successfully submitted
@@ -50,6 +51,7 @@ const CuteGif = () => {
         date,
         location,
         message,
+        receiverEmail, // Include receiver's email in the request
       });
       console.log("Emails sent successfully");
     } catch (error) {
@@ -85,6 +87,14 @@ const CuteGif = () => {
       {showDatePlanForm && (
         <form onSubmit={handleDatePlanSubmit}>
           <Typography variant='h4'>Let's plan our date</Typography>
+          <TextField
+            label="Receiver's Email" // Input field for receiver's email
+            type="email"
+            value={receiverEmail}
+            onChange={(e) => setReceiverEmail(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
           <TextField
             label="Choose a date"
             type="date"
